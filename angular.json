@@ -1,0 +1,140 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "bookingapp": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/workspace:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/bookingapp",
+      "sourceRoot": "apps/bookingapp/src",
+      "prefix": "bookingapp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/bookingapp",
+            "index": "apps/bookingapp/src/index.html",
+            "main": "apps/bookingapp/src/main.ts",
+            "polyfills": "apps/bookingapp/src/polyfills.ts",
+            "tsConfig": "apps/bookingapp/tsconfig.app.json",
+            "assets": [
+              "apps/bookingapp/src/favicon.ico",
+              "apps/bookingapp/src/assets"
+            ],
+            "styles": ["apps/bookingapp/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/bookingapp/src/environments/environment.ts",
+                  "with": "apps/bookingapp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bookingapp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bookingapp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bookingapp:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/bookingapp/tsconfig.app.json",
+              "apps/bookingapp/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/bookingapp/jest.config.js",
+            "tsConfig": "apps/bookingapp/tsconfig.spec.json",
+            "setupFile": "apps/bookingapp/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "bookingapp-e2e": {
+      "root": "apps/bookingapp-e2e",
+      "sourceRoot": "apps/bookingapp-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/bookingapp-e2e/cypress.json",
+            "tsConfig": "apps/bookingapp-e2e/tsconfig.e2e.json",
+            "devServerTarget": "bookingapp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bookingapp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/bookingapp-e2e/tsconfig.e2e.json"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "bookingapp"
+}
