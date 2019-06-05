@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+    <button mat-button routerLink="/home"> BOOKING APP </button>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+      <div fxLayout fxLayoutGap="20px">
+
+        <div fxFlex="25" fxFlex.gt-xs="50%" fxFlex.sm="100" fxFlex.gt-md="25%" *ngIf="!isLogedIn">
+          <button mat-button (click)="openDialog()">
+            ADMIN
+          </button>
+        </div>
+        <div fxFlex="25" fxFlex.gt-xs="50%" fxFlex.sm="100" fxFlex.gt-md="25%"  *ngIf="isLogedIn">
+          <button mat-button (click)="logOut()">
+            <mat-icon color="primary" class="example-icon" aria-hidden="false" aria-label="Example heart icon">logout
+            </mat-icon>
+            LOGOUT
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<router-outlet></router-outlet>

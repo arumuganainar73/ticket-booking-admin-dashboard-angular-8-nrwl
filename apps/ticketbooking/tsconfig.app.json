@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": []
+  },
+  "include": [
+    "**/*.ts",
+    "../../libs/home-slider/src/index.ts",
+    "../../libs/product-lists/src/index.ts"
+  ],
+  "exclude": [
+    "src/test-setup.ts",
+    "**/*.spec.ts"
+  ]
+}

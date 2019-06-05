@@ -8,11 +8,20 @@
     "nx.json": "*"
   },
   "projects": {
-    "bookingapp-e2e": {
+    "ticketbooking-e2e": {
       "tags": []
     },
-    "bookingapp": {
-      "tags": []
+    "ticketbooking": {
+      "tags": ["ticketbooking"]
+    },
+    "home-slider": {
+      "tags": ["ticketbookingsmart"]
+    },
+    "product-lists": {
+      "tags": ["ticketbookingsmart"]
+    },
+    "widget-confirm-alert": {
+      "tags": ["ticketbookingwidget"]
     }
   }
 }

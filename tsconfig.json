@@ -15,7 +15,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@bookingapp/home-slider": ["libs/home-slider/src/index.ts"],
+      "@bookingapp/product-lists": ["libs/product-lists/src/index.ts"],
+      "@bookingapp/widget/confirm-alert": [
+        "libs/widget/confirm-alert/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "bookingapp": {
+    "ticketbooking": {
       "projectType": "application",
       "schematics": {
         "@nrwl/workspace:component": {
           "style": "scss"
         }
       },
-      "root": "apps/bookingapp",
-      "sourceRoot": "apps/bookingapp/src",
+      "root": "apps/ticketbooking",
+      "sourceRoot": "apps/ticketbooking/src",
       "prefix": "bookingapp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/bookingapp",
-            "index": "apps/bookingapp/src/index.html",
-            "main": "apps/bookingapp/src/main.ts",
-            "polyfills": "apps/bookingapp/src/polyfills.ts",
-            "tsConfig": "apps/bookingapp/tsconfig.app.json",
+            "outputPath": "dist/apps/ticketbooking",
+            "index": "apps/ticketbooking/src/index.html",
+            "main": "apps/ticketbooking/src/main.ts",
+            "polyfills": "apps/ticketbooking/src/polyfills.ts",
+            "tsConfig": "apps/ticketbooking/tsconfig.app.json",
             "assets": [
-              "apps/bookingapp/src/favicon.ico",
-              "apps/bookingapp/src/assets"
+              "apps/ticketbooking/src/favicon.ico",
+              "apps/ticketbooking/src/assets"
             ],
-            "styles": ["apps/bookingapp/src/styles.scss"],
+            "styles": ["apps/ticketbooking/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/bookingapp/src/environments/environment.ts",
-                  "with": "apps/bookingapp/src/environments/environment.prod.ts"
+                  "replace": "apps/ticketbooking/src/environments/environment.ts",
+                  "with": "apps/ticketbooking/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -59,26 +59,26 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bookingapp:build"
+            "browserTarget": "ticketbooking:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bookingapp:build:production"
+              "browserTarget": "ticketbooking:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bookingapp:build"
+            "browserTarget": "ticketbooking:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/bookingapp/tsconfig.app.json",
-              "apps/bookingapp/tsconfig.spec.json"
+              "apps/ticketbooking/tsconfig.app.json",
+              "apps/ticketbooking/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -86,36 +86,136 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/bookingapp/jest.config.js",
-            "tsConfig": "apps/bookingapp/tsconfig.spec.json",
-            "setupFile": "apps/bookingapp/src/test-setup.ts"
+            "jestConfig": "apps/ticketbooking/jest.config.js",
+            "tsConfig": "apps/ticketbooking/tsconfig.spec.json",
+            "setupFile": "apps/ticketbooking/src/test-setup.ts"
           }
         }
       }
     },
-    "bookingapp-e2e": {
-      "root": "apps/bookingapp-e2e",
-      "sourceRoot": "apps/bookingapp-e2e/src",
+    "ticketbooking-e2e": {
+      "root": "apps/ticketbooking-e2e",
+      "sourceRoot": "apps/ticketbooking-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/bookingapp-e2e/cypress.json",
-            "tsConfig": "apps/bookingapp-e2e/tsconfig.e2e.json",
-            "devServerTarget": "bookingapp:serve"
+            "cypressConfig": "apps/ticketbooking-e2e/cypress.json",
+            "tsConfig": "apps/ticketbooking-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ticketbooking:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bookingapp:serve:production"
+              "devServerTarget": "ticketbooking:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/bookingapp-e2e/tsconfig.e2e.json"
+            "tsConfig": "apps/ticketbooking-e2e/tsconfig.e2e.json"
           }
+        }
+      }
+    },
+    "home-slider": {
+      "projectType": "library",
+      "root": "libs/home-slider",
+      "sourceRoot": "libs/home-slider/src",
+      "prefix": "bookingapp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/home-slider/tsconfig.lib.json",
+              "libs/home-slider/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/home-slider/jest.config.js",
+            "tsConfig": "libs/home-slider/tsconfig.spec.json",
+            "setupFile": "libs/home-slider/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "product-lists": {
+      "projectType": "library",
+      "root": "libs/product-lists",
+      "sourceRoot": "libs/product-lists/src",
+      "prefix": "bookingapp",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/product-lists/tsconfig.lib.json",
+              "libs/product-lists/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/product-lists/jest.config.js",
+            "tsConfig": "libs/product-lists/tsconfig.spec.json",
+            "setupFile": "libs/product-lists/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "widget-confirm-alert": {
+      "projectType": "library",
+      "root": "libs/widget/confirm-alert",
+      "sourceRoot": "libs/widget/confirm-alert/src",
+      "prefix": "bookingapp",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/widget/confirm-alert/tsconfig.lib.json",
+            "project": "libs/widget/confirm-alert/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/widget/confirm-alert/tsconfig.lib.json",
+              "libs/widget/confirm-alert/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/widget/confirm-alert/jest.config.js",
+            "tsConfig": "libs/widget/confirm-alert/tsconfig.spec.json",
+            "setupFile": "libs/widget/confirm-alert/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }
@@ -136,5 +236,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "bookingapp"
+  "defaultProject": "ticketbooking"
 }
