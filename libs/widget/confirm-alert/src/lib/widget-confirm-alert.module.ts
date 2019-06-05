@@ -4,6 +4,8 @@ import { ConfirmAlertComponent } from './confirm-alert/confirm-alert.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [ConfirmAlertComponent]
+  declarations: [ConfirmAlertComponent],
+  exports: [ConfirmAlertComponent],
+
 })
-export class WidgetConfirmAlertModule {}
+export class WidgetConfirmAlertModule { }

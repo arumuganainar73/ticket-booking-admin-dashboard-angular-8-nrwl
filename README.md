@@ -1,4 +1,14 @@
-# Bookingapp
+# ticket-booking-admin-dashboard-angular-8-ivy-engine-nrwl
+
+
+## Run Application
+
+- [Npm install]
+  - `npm install`
+  
+- [Run App]
+  - `ng serve ticketbooking`
+
 
 This project was generated using [Nx](https://nx.dev).
 

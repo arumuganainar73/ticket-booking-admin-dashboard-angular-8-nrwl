@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDetails } from 'apps/ticketbooking/src/assets/mock-db/products';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ConfirmAlertComponent } from '../../../../widget/confirm-alert/src/lib/confirm-alert/confirm-alert.component';
 
 @Component({
   selector: 'bookingapp-product-lists',
@@ -43,7 +45,7 @@ export class ProductListsComponent implements OnInit {
   enableZoom: boolean = false;
   enablePan: boolean = false;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
 
   }
   ngOnInit() {
@@ -53,6 +55,13 @@ export class ProductListsComponent implements OnInit {
     });
   }
   bookingTicket() {
+    const dialogRef = this.dialog.open(ConfirmAlertComponent, {
+      width: '250px',
+      data: { title: 'Success', content: 'Your Ticket Booked Successfully!!!' }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

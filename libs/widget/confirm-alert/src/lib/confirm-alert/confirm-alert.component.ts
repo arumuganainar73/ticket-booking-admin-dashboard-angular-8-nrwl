@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'bookingapp-confirm-alert',
@@ -7,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmAlertComponent implements OnInit {
 
-  constructor() { }
+  title = '';
+  content = '';
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmAlertComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.title = data.title;
+    this.content = data.content;
+  }
+
+  closePopup(flag) {
+    this.dialogRef.close(flag);
+  }
+
 
   ngOnInit() {
   }
