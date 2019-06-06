@@ -1,0 +1,30 @@
+<div>
+  <div>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="product.title" placeholder="Movie Name">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="product.actor" placeholder="Actor Name">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput type="number" [(ngModel)]="product.price" placeholder="Price">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput type="textarea" [(ngModel)]="product.description" placeholder="Description">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-button color="primary" (click)="closePopup('cancel')">
+      CANCEL
+    </button>
+    <button mat-button color="primary" (click)="closePopup('add')">
+      ADD
+    </button>
+  </div>
+</div>

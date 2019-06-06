@@ -6,7 +6,7 @@
 
 <div>
   <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap="wrap">
-    <ng-container *ngFor="let product of productLists">
+    <ng-container *ngFor="let product of productLists;let i = index">
       <div fxFlex="25" fxFlex.gt-xs="50%" fxFlex.sm="100" [fxFlex.gt-md]="regularDistribution" class="product-list">
         <mat-card class="example-card">
           <mat-card-header>
@@ -17,9 +17,8 @@
           <img mat-card-image (click)="navigateTo(product)" [src]=product.url alt="Photo of a Shiba Inu">
           <mat-card-content>
             <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
+              {{product.description}}
+
             </p>
           </mat-card-content>
           <mat-card-actions>
@@ -32,7 +31,7 @@
               <mat-icon color="accent" class="example-icon" aria-hidden="false" aria-label="Example heart icon">
                 share</mat-icon>
             </button>
-            <button mat-button *ngIf="isLogedIn">
+            <button mat-button *ngIf="isLogedIn" (click)="deleteProduct(product, i)">
               <mat-icon color="accent" class="example-icon" aria-hidden="false" aria-label="Example heart icon">
                 delete</mat-icon>
             </button>

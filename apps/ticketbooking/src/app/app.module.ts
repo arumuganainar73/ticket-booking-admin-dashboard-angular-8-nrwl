@@ -12,9 +12,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreService } from './core.service';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { AddproductComponent } from './addproduct/addproduct.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, AddproductComponent],
   imports: [BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -26,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     FlexLayoutModule
   ],
   providers: [CoreService],
-  entryComponents: [LoginComponent],
+  entryComponents: [LoginComponent, AddproductComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

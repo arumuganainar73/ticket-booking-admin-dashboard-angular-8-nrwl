@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ProductDetails } from 'apps/ticketbooking/src/assets/mock-db/products';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ConfirmAlertComponent } from '../../../../widget/confirm-alert/src/lib/confirm-alert/confirm-alert.component';
+import { CoreService } from 'apps/ticketbooking/src/app/core.service';
+
 
 @Component({
   selector: 'bookingapp-product-lists',
   templateUrl: './product-lists.component.html',
   styleUrls: ['./product-lists.component.scss']
 })
-export class ProductListsComponent implements OnInit {
+export class ProductListsComponent implements OnInit, OnChanges {
 
   selectedId: any;
   selectedProduct: any;
@@ -45,7 +47,8 @@ export class ProductListsComponent implements OnInit {
   enableZoom: boolean = false;
   enablePan: boolean = false;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(private route: ActivatedRoute,
+    public coreService: CoreService, public dialog: MatDialog) {
 
   }
   ngOnInit() {
@@ -53,7 +56,16 @@ export class ProductListsComponent implements OnInit {
     this.selectedProduct = this.productList.filter(obj => {
       return obj['id'] === this.selectedId;
     });
+    this.coreService.getMessage().subscribe(response => {
+      console.log("Subscribe Data", response);
+    });
   }
+  ngOnChanges() {
+    this.coreService.getMessage().subscribe(response => {
+      console.log("Subscribe Data", response);
+    });
+  }
+
   bookingTicket() {
     const dialogRef = this.dialog.open(ConfirmAlertComponent, {
       width: '250px',
