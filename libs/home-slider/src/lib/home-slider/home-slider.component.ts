@@ -68,7 +68,7 @@ export class HomeSliderComponent implements OnInit, OnChanges {
     });
     this.coreService.getLoginStatus().subscribe(response => {
       console.log("Subscribe Data Login Status", response);
-      this.isLogedIn = response; 
+      this.isLogedIn = response;
     });
   }
   ngOnChanges() {
@@ -78,7 +78,7 @@ export class HomeSliderComponent implements OnInit, OnChanges {
     });
   }
   deleteProduct(product, index) {
-    this.productLists.slice(0, index);
+    this.productLists.splice(index, 1);
   }
   navigateTo(product) {
     this.router.navigate(['/product/' + product.id]);

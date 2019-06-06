@@ -29,6 +29,7 @@ export class AppComponent {
   }
   logOut() {
     this.isLogedIn = false;
+    this.coreService.setLoginStatus(this.isLogedIn);
   }
   addNewProduct() {
     const dialogRef = this.dialog.open(AddproductComponent, {
