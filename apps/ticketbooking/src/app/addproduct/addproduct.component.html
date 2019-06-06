@@ -1,30 +1,32 @@
 <div>
-  <div>
-    <mat-form-field>
-      <input matInput type="text" [(ngModel)]="product.title" placeholder="Movie Name">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input matInput type="text" [(ngModel)]="product.actor" placeholder="Actor Name">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input matInput type="number" [(ngModel)]="product.price" placeholder="Price">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input matInput type="textarea" [(ngModel)]="product.description" placeholder="Description">
-    </mat-form-field>
-  </div>
-  <div>
-    <button mat-button color="primary" (click)="closePopup('cancel')">
-      CANCEL
-    </button>
-    <button mat-button color="primary" (click)="closePopup('add')">
-      ADD
-    </button>
-  </div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field>
+        <input matInput type="text" formControlName="title" placeholder="Movie Name">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="text" formControlName="actor" placeholder="Actor Name">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="number" formControlName="price" placeholder="Price">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="textarea" formControlName="description" placeholder="Description">
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button color="primary" (click)="closePopup('cancel')">
+        CANCEL
+      </button>
+      <button mat-button color="primary" type="submit">
+        ADD
+      </button>
+    </div>
+  </form>
 </div>

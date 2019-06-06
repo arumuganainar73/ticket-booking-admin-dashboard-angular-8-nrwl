@@ -11,18 +11,27 @@ import { CoreService } from 'apps/ticketbooking/src/app/core.service';
   templateUrl: './product-lists.component.html',
   styleUrls: ['./product-lists.component.scss']
 })
-export class ProductListsComponent implements OnInit, OnChanges {
-
+export class ProductListsComponent implements OnInit {
+  /*******************************************************
+    * Declare Inital value's
+    * *****************************************************/
   selectedId: any;
   selectedProduct: any;
   productList = ProductDetails;
-  regularDistribution = 100;
+  regularDistribution = 100 / 2;
+
+  /*******************************************************
+  * Home Slider Image's
+  * *****************************************************/
   imageSources = [
     { url: 'assets/home/slider1.jpg', caption: 'LKG' },
     { url: 'assets/home/slider2.png', caption: 'Dog Journey', clickAction: () => console.log('custom click function') },
     { url: 'assets/home/slider3.jpg', caption: 'Dog Journey' },
     { url: 'assets/home/slider2.png', caption: 'Aquaman' }
   ];
+  /*******************************************************
+  * Slider Config
+  * *****************************************************/
   height: string = '250px';
   minHeight: string;
   arrowSize: string = '30px';
@@ -52,19 +61,24 @@ export class ProductListsComponent implements OnInit, OnChanges {
 
   }
   ngOnInit() {
+    /*******************************************************
+  * Get Selected id from state param's
+  * *****************************************************/
     this.selectedId = this.route.snapshot.paramMap.get("id");
+
+    /*******************************************************
+  * Filter selected product
+  * *****************************************************/
+
     this.selectedProduct = this.productList.filter(obj => {
-      return obj['id'] === this.selectedId;
+      return obj['id'] === parseInt(this.selectedId);
     });
-    this.coreService.getMessage().subscribe(response => {
-      console.log("Subscribe Data", response);
-    });
+
   }
-  ngOnChanges() {
-    this.coreService.getMessage().subscribe(response => {
-      console.log("Subscribe Data", response);
-    });
-  }
+
+  /*******************************************************
+  * Book ticket
+  * *****************************************************/
 
   bookingTicket() {
     const dialogRef = this.dialog.open(ConfirmAlertComponent, {

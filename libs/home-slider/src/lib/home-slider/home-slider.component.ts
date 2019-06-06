@@ -10,11 +10,18 @@ import { CoreService } from 'apps/ticketbooking/src/app/core.service';
 })
 export class HomeSliderComponent implements OnInit, OnChanges {
 
+  /*******************************************************
+   * Fetch product Details 
+   * *****************************************************/
+
+
   productLists = ProductDetails;
 
   regularDistribution = 100 / 4;
 
-
+  /*******************************************************
+   * home slider Images
+   * *****************************************************/
   imageSources = [
     { url: 'assets/home/slider1.jpg', caption: 'LKG' },
     { url: 'assets/home/slider2.png', caption: 'Dog Journey', clickAction: () => console.log('custom click function') },
@@ -22,6 +29,9 @@ export class HomeSliderComponent implements OnInit, OnChanges {
     { url: 'assets/home/slider2.png', caption: 'Aquaman' },
 
   ];
+  /*******************************************************
+ * Slider Config
+ * *****************************************************/
   height: string = '250px';
   minHeight: string;
   arrowSize: string = '30px';
@@ -46,11 +56,21 @@ export class HomeSliderComponent implements OnInit, OnChanges {
   enableZoom: boolean = false;
   enablePan: boolean = false;
 
+  /*******************************************************
+ * Check login status 
+ * *****************************************************/
+
   isLogedIn = false;
 
   constructor(private route: ActivatedRoute,
     private router: Router, public coreService: CoreService) { }
+
   ngOnInit() {
+
+    /*******************************************************
+   * Added new product  for admin login
+   * *****************************************************/
+
     this.coreService.getMessage().subscribe(response => {
       console.log("Subscribe Data", response);
       if (!response) {
@@ -66,6 +86,11 @@ export class HomeSliderComponent implements OnInit, OnChanges {
         description: response.description,
       })
     });
+
+    /*******************************************************
+     * Listern Login status
+     * *****************************************************/
+
     this.coreService.getLoginStatus().subscribe(response => {
       console.log("Subscribe Data Login Status", response);
       this.isLogedIn = response;
@@ -77,9 +102,17 @@ export class HomeSliderComponent implements OnInit, OnChanges {
 
     });
   }
+  /*******************************************************
+ * Delete movie from array
+ * *****************************************************/
+
   deleteProduct(product, index) {
     this.productLists.splice(index, 1);
   }
+  /*******************************************************
+ * Navigate to deatils page
+ * *****************************************************/
+
   navigateTo(product) {
     this.router.navigate(['/product/' + product.id]);
   }

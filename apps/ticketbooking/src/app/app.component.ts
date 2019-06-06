@@ -14,6 +14,9 @@ export class AppComponent {
   isLogedIn = false;
 
   constructor(public dialog: MatDialog, public coreService: CoreService) { }
+  /*******************************************************
+     * Login component
+     * *****************************************************/
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
@@ -27,10 +30,17 @@ export class AppComponent {
       this.coreService.setLoginStatus(this.isLogedIn);
     });
   }
+  /*******************************************************
+   * ALogout
+   * *****************************************************/
   logOut() {
     this.isLogedIn = false;
     this.coreService.setLoginStatus(this.isLogedIn);
   }
+  /*******************************************************
+   * Add new product popup
+   * *****************************************************/
+
   addNewProduct() {
     const dialogRef = this.dialog.open(AddproductComponent, {
       width: '250px',

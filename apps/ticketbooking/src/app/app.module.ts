@@ -11,7 +11,7 @@ import { MaterialModule } from './app-material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreService } from './core.service';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddproductComponent } from './addproduct/addproduct.component';
 
 @NgModule({
@@ -24,6 +24,7 @@ import { AddproductComponent } from './addproduct/addproduct.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule
   ],
   providers: [CoreService],

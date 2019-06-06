@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { LoginComponent } from '../login/login.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'bookingapp-addproduct',
@@ -8,23 +8,52 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./addproduct.component.css']
 })
 export class AddproductComponent implements OnInit {
-  product = {
-    title: '',
-    actor: '',
-    price: '',
-    description: ''
-  }
-  constructor(
+  productForm: FormGroup;
+  submitted = false;
+
+  constructor(private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AddproductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
+  /*******************************************************
+   * Close Popup
+   * *****************************************************/
 
   closePopup(flag) {
-    flag === 'add' ? this.dialogRef.close(this.product) : this.dialogRef.close(flag);
+    this.dialogRef.close(flag);
   }
 
   ngOnInit() {
+    this.productForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      actor: ['', Validators.required],
+      price: ['', Validators.required],
+      description: ['', Validators.required]
+    });
   }
+  // convenience getter for easy access to form fields
+  get f() { return this.productForm.controls; }
 
+  /*******************************************************
+   * add new product
+   * *****************************************************/
+
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.productForm.invalid) {
+      return;
+    }
+
+    const product = {
+      title: this.productForm.controls.title.value,
+      actor: this.productForm.controls.actor.value,
+      price: this.productForm.controls.price.value,
+      description: this.productForm.controls.description.value,
+    }
+    this.dialogRef.close(product);
+  }
 }
