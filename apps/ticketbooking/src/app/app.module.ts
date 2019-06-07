@@ -13,6 +13,7 @@ import { CoreService } from './core.service';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddproductComponent } from './addproduct/addproduct.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, AddproductComponent],
@@ -27,7 +28,7 @@ import { AddproductComponent } from './addproduct/addproduct.component';
     ReactiveFormsModule,
     FlexLayoutModule
   ],
-  providers: [CoreService],
+  providers: [CoreService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   entryComponents: [LoginComponent, AddproductComponent],
   bootstrap: [AppComponent]
 })
